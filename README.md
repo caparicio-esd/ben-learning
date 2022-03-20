@@ -2,6 +2,7 @@
 * Setup TS and scaffold project
 * Setup MikroORM with TS
 * Express, apollo and Graphql setup
+* Post resolver - Query graphql actions, args, context
 
 
 ### Commands
