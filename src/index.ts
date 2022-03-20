@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import { MikroORM } from "@mikro-orm/core";
 import mikroORMConfig from "./mikro-orm.config";
 import { MySqlDriver } from "@mikro-orm/mysql";

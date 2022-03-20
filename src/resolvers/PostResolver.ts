@@ -1,7 +1,12 @@
 import { Post } from "../entities/Post";
-import { EmContext } from "../types";
+import {
+  EmContext,
+  NewPost,
+  NewPostResolverObject,
+  UpdatePostResolverObject,
+} from "../types";
 import { Arg, Ctx, Int, Mutation, Query, Resolver } from "type-graphql";
-import { QueryOrder } from "@mikro-orm/core";
+import { QueryOrder, RequiredEntityData } from "@mikro-orm/core";
 
 @Resolver()
 export class PostResolver {
@@ -43,5 +48,52 @@ export class PostResolver {
       .orderBy({ createdAt: QueryOrder.DESC })
       .limit(num);
     return post;
+  }
+
+  /**
+   *
+   */
+  @Mutation(() => Post)
+  async createPost(
+    @Ctx() { em }: EmContext,
+    @Arg("postData", () => NewPostResolverObject) postData: NewPost
+  ): Promise<Post> {
+    const post = em.create(Post, {
+      title: postData.title,
+      subtitle: postData.subtitle,
+    } as RequiredEntityData<Post>);
+    await em.persistAndFlush(post);
+    return post;
+  }
+
+  /**
+   *
+   */
+  @Mutation(() => Post)
+  async updatePost(
+    @Ctx() { em }: EmContext,
+    @Arg("postData", () => UpdatePostResolverObject) postData: NewPost,
+    @Arg("id", () => Int) id: number
+  ): Promise<Post | null> {
+    const post = await em.findOne(Post, { id });
+    if (post) {
+      post.title = postData.title!;
+      post.subtitle = postData.subtitle || "";
+      return post;
+    } else {
+      return null;
+    }
+  }
+
+  /**
+   *
+   */
+  @Mutation(() => Boolean)
+  async deletePost(
+    @Ctx() { em }: EmContext,
+    @Arg("id", () => Int) id: number
+  ): Promise<Boolean> {
+    await em.nativeDelete(Post, { id });
+    return true;
   }
 }
