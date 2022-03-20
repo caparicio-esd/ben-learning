@@ -1,20 +1,29 @@
-import { MikroORM, RequiredEntityData } from "@mikro-orm/core";
+import { MikroORM } from "@mikro-orm/core";
 import mikroORMConfig from "./mikro-orm.config";
-import { Post } from "./entities/Post";
 import { MySqlDriver } from "@mikro-orm/mysql";
+import express from "express";
+import { ApolloServer } from "apollo-server-express";
+import { buildSchema } from "type-graphql";
+import { HelloResolver } from "./resolvers/HelloResolver";
 
 const main = async () => {
   const orm = await MikroORM.init<MySqlDriver>(mikroORMConfig);
   await orm.getMigrator().up();
+  const app = express();
+  const apolloServer = new ApolloServer({
+    schema: await buildSchema({
+      resolvers: [HelloResolver],
+      validate: true,
+    }),
+  });
+  await apolloServer.start()
+  apolloServer.applyMiddleware({ app });
 
-  const post = orm.em.create<Post>(Post, {
-    title: "hola...",
-    subtitle: "holita...."
-  } as RequiredEntityData<Post>);
-  orm.em.persistAndFlush(post);
+  app.listen(4000, () => {
+    console.log("Server working on localhost:4000");
+  });
 };
 
 main().catch((err) => {
   console.error(err);
 });
-

@@ -1,6 +1,7 @@
 ### Steps
 * Setup TS and scaffold project
 * Setup MikroORM with TS
+* Express, apollo and Graphql setup
 
 
 ### Commands
