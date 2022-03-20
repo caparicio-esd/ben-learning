@@ -1,4 +1,3 @@
-import "reflect-metadata";
 import { MikroORM, RequiredEntityData } from "@mikro-orm/core";
 import mikroORMConfig from "./mikro-orm.config";
 import { Post } from "./entities/Post";
@@ -10,6 +9,7 @@ const main = async () => {
 
   const post = orm.em.create<Post>(Post, {
     title: "hola...",
+    subtitle: "holita...."
   } as RequiredEntityData<Post>);
   orm.em.persistAndFlush(post);
 };

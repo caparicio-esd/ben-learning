@@ -13,4 +13,7 @@ export class Post {
 
   @Property({ type: "text" })
   title!: string;
+
+  @Property({ type: "text" })
+  subtitle?: string;
 }

@@ -40,6 +40,15 @@
           "primary": false,
           "nullable": false,
           "mappedType": "text"
+        },
+        "subtitle": {
+          "name": "subtitle",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "text"
         }
       },
       "name": "post",

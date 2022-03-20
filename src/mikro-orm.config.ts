@@ -1,4 +1,4 @@
-import { Options } from "@mikro-orm/core";
+import { Options, ReflectMetadataProvider } from "@mikro-orm/core";
 import { Post } from "./entities/Post";
 import path from "path";
 import { MySqlDriver } from "@mikro-orm/mysql";
@@ -12,7 +12,7 @@ export default {
   password: "root",
   host: "127.0.0.1",
   port: 3306,
-  // metadataProvider: TsMorphMetadataProvider,
+  metadataProvider: ReflectMetadataProvider,
   allowGlobalContext: true,
   migrations: {
     path: path.resolve(__dirname, "migrations"),
