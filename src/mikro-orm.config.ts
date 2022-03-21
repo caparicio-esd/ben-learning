@@ -2,9 +2,10 @@ import { Options, ReflectMetadataProvider } from "@mikro-orm/core";
 import { Post } from "./entities/Post";
 import path from "path";
 import { MySqlDriver } from "@mikro-orm/mysql";
+import { User } from "./entities/User";
 
 export default {
-  entities: [Post],
+  entities: [Post, User],
   dbName: "lilredit",
   type: "mysql",
   debug: true,

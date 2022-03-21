@@ -7,14 +7,15 @@ import { ApolloServer } from "apollo-server-express";
 import { buildSchema } from "type-graphql";
 import { HelloResolver } from "./resolvers/HelloResolver";
 import { PostResolver } from "./resolvers/PostResolver";
+import { UserResolver } from "./resolvers/UserResolver";
 
 const main = async () => {
   const orm = await MikroORM.init<MySqlDriver>(mikroORMConfig);
-  await orm.getMigrator().up();
+  // await orm.getMigrator().up();
   const app = express();
   const apolloServer = new ApolloServer({
     schema: await buildSchema({
-      resolvers: [HelloResolver, PostResolver],
+      resolvers: [HelloResolver, PostResolver, UserResolver],
       validate: true,
     }),
     context: () => ({ em: orm.em }),

@@ -4,6 +4,7 @@
 * Express, apollo and Graphql setup
 * Post resolver - Query graphql actions, args, context
 * Complete CRUD with graphql and type-graphql
+* User Resolver - registration and login
 
 
 ### Commands
