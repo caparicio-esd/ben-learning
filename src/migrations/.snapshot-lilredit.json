@@ -54,9 +54,7 @@
       "name": "user",
       "indexes": [
         {
-          "columnNames": [
-            "user_name"
-          ],
+          "columnNames": ["user_name"],
           "composite": false,
           "keyName": "user_user_name_unique",
           "primary": false,
@@ -64,9 +62,7 @@
         },
         {
           "keyName": "PRIMARY",
-          "columnNames": [
-            "id"
-          ],
+          "columnNames": ["id"],
           "composite": false,
           "primary": true,
           "unique": true
@@ -129,9 +125,7 @@
       "indexes": [
         {
           "keyName": "PRIMARY",
-          "columnNames": [
-            "id"
-          ],
+          "columnNames": ["id"],
           "composite": false,
           "primary": true,
           "unique": true

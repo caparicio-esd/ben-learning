@@ -18,6 +18,6 @@ export default {
   migrations: {
     path: path.resolve(__dirname, "migrations"),
     glob: "!(*.d).{js,ts}",
-    emit: "ts"
+    emit: "ts",
   },
 } as Options<MySqlDriver>;

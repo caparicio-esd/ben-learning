@@ -1,14 +1,14 @@
-import { Migration } from '@mikro-orm/migrations';
+import { Migration } from "@mikro-orm/migrations";
 
 export class Migration20220321103200 extends Migration {
-
   async up(): Promise<void> {
-    this.addSql('create table `user` (`id` int unsigned not null auto_increment primary key, `created_at` datetime not null, `updated_at` datetime not null, `user_name` text not null, `password` text not null) default character set utf8mb4 engine = InnoDB;');
-    this.addSql('alter table `user` add unique `user_user_name_unique`(`user_name`);');
+    this.addSql(
+      "create table `user` (`id` int unsigned not null auto_increment primary key, `created_at` datetime not null, `updated_at` datetime not null, `user_name` text not null, `password` text not null) default character set utf8mb4 engine = InnoDB;",
+    );
+    this.addSql("alter table `user` add unique `user_user_name_unique`(`user_name`);");
   }
 
   async down(): Promise<void> {
-    this.addSql('drop table if exists `user`;');
+    this.addSql("drop table if exists `user`;");
   }
-
 }
